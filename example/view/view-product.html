@@ -1,0 +1,9 @@
+<include name="component/header"></include>
+<h1>
+    You are viewing the product <span id="productName"></span>, ID <span id="id"></span>
+</h1>
+<include name="component/footer" @withAnVariable="aaa"></include>
+<script>
+    document.getElementById("productName").innerText = window.query.productName;
+    document.getElementById("id").innerText = window.query.id;
+</script>
