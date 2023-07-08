@@ -1,0 +1,14 @@
+[
+    {
+        "compilationMode": "JS",
+        "label": "Main Javascript sources",
+        "include": [
+            "./src/__init.js",
+            "./src"
+        ],
+        "output": [
+            "./dist/latest/planifolia.min.js",
+            "./dist/v.1.0/planifolia.min.js"
+        ]
+    }
+]

@@ -1,12 +1,12 @@
 # Planifolia
 
-A serverless template engine and routing engine written in vanilla JavaScript, built to work with HTML, in 4,46 KB (2,63 KB minified).
+A serverless template engine and routing engine written in vanilla JavaScript, built to work with HTML, with only **4,33 KB**!
 
 This super small utility can render components, routes and layouts only with Vanilla Javascript, without having to configure an additional service for that.
 
 ## How it works?
 
-**Your files are your routes!**
+### Your files are your routes!
 
 By defining a "views" folder, you can access your files by:
 
@@ -36,7 +36,7 @@ window.query = {
 }
 ```
 
-About internal links, no need to worry about writing `href="/#/...` at every time. Planifolia rewrites for you.
+About internal links, no need to worry about writing `href="#/...` at every time. Planifolia rewrites for you.
 
 ## Configuration
 
@@ -57,21 +57,42 @@ This repository is an example project! Go ahead and see how it works!
     </body>
     <script>
         window.PlanifoliaSettings = {
-            //required. sets the container where the components will be rendered.
-            container: document.querySelector("main"),
-
-            // optional. defines the prefix where Planifolia will look for components.
+            // required.
+            // defines the base path to resolving planifolia views into.
+            // all files must end with .html in order to be rendered
             basePath: "/view/",
 
-            // optional. Delay browsing for a few milliseconds before browsing.
+            // required only for auto-routing.
+            // defines the container which the router will fetch contents to.
+            container: null,
+
+            // optional.
+            // fires an event when planifolia is navigating
+            onNavigating: () => { },
+
+            // optional.
+            // fires an event after planifolia was navigated and rendered all
+            // components
+            onNavigated: () => { },
+
+            // optional.
+            // fires an event after planifolia renders an component to an div from
+            // fetchTo or contentTo
+            onFetch: (fetchedPage) => { },
+
+            // optional.
+            // delays the navigation between router fetching pages. only works for
+            // auto router and not fetchTo or contentTo.
             delayNavigation: 0,
 
-            // optional. Rewrites links that point inside your site so they don't get out of routing.
+            // optional.
+            // defines if planifolia should rewrite <a> href links which points to
+            // the site to rewrite with #/.
             autoRewriteLinks: true
         };
 
-        // initialize the router engine
-        Planifolia.initializeAutoRouter();
+        // initialize the auto router engine
+        window.Planifolia.initializeAutoRouter();
     </script>
 </html>
 ```
@@ -115,4 +136,16 @@ Address: https://example.com/#/view-product?id=125&action=view
 ```js
 window.path = 'window.path'
 window.pathAndQuery = '/view-product?id=125&action=view'
+```
+
+## Manually fetching components
+
+```js
+var container = document.querySelector("main");
+
+// set index.html contents to the container inner body
+window.Planifolia.contentTo(container, '/index');
+
+// replaces the container with the fetched content
+window.Planifolia.fetchTo(container, '/index');
 ```

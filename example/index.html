@@ -7,19 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="/planifolia.js"></script>
+    <script src="/dist/latest/planifolia.min.js"></script>
 </head>
 
 <body>
     <main></main>
 </body>
 <script>
-    window.PlanifoliaSettings = {
-        container: document.querySelector("main"),
-        basePath: "/view/",
-        delayNavigation: 0,
-        autoRewriteLinks: true
-    };
+    window.PlanifoliaSettings.container = document.querySelector("main");
+    window.PlanifoliaSettings.basePath = "/view/";
+
     Planifolia.initializeAutoRouter();
 </script>
 
