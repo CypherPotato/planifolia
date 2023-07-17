@@ -22,6 +22,7 @@ window.Planifolia.fetchComponents = (target) => {
         } else {
             text = componentCache[componentUrl];
         }
+        
         for (const attr of e.attributes) {
             let attrName = attr.name;
             let attrValue = attr.value;

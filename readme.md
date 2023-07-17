@@ -81,6 +81,11 @@ This repository is an example project! Go ahead and see how it works!
             onFetch: (fetchedPage) => { },
 
             // optional.
+            // specifies a predicate that executes on the name of the file that
+            // will be downloaded by the router.
+            handleFileResolve: (f) => f,
+
+            // optional.
             // delays the navigation between router fetching pages. only works for
             // auto router and not fetchTo or contentTo.
             delayNavigation: 0,
